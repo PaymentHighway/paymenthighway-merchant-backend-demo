@@ -1,8 +1,9 @@
 import { PaymentAPI } from 'paymenthighway';
 import responseJson from './responseJson';
+import parseJson from './util';
 
 export const debit = async (event, context, callback) => {
-  const serverlessRequest = JSON.parse(event.body) || {};
+  const serverlessRequest = parseJson(event.body, {});
   return executeDebit(serverlessRequest);
 };
   

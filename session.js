@@ -1,10 +1,11 @@
 import { isValidApplePayGateway } from './validateApplePayGateway';
 import responseJson from './responseJson';
+import parseJson from './util';
 import request from 'request';
 
 export const create = async (event, context, callback) => {
 
-    const serverlessRequest = JSON.parse(event.body) || {url: '', body: {}};
+    const serverlessRequest = parseJson(event.body, {url: '', body: {}});
     const endpointURL = serverlessRequest.url || '';
 
     if (!isValidApplePayGateway(endpointURL)) {
@@ -28,7 +29,7 @@ const createSession = (endpointURL, body) => new Promise((resolve, reject) => {
     json: true,
   };
 
-  request(options, function (error, response, body) {
+  request(options, (error, response, body) => {
 
     let serverlessResponse = {};
 

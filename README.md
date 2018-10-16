@@ -38,12 +38,6 @@ To simulate API Gateway locally using [serverless-offline](https://github.com/dh
 $ serverless offline start
 ```
 
-Run your tests
-
-``` bash
-$ npm test
-```
-
 We use Jest to run our tests. You can read more about setting up your tests [here](https://facebook.github.io/jest/docs/en/getting-started.html#content).
 
 Deploy your project
