@@ -9,8 +9,8 @@ For the project [paymenthighway-applepay-web-demo](https://github.com/PaymentHig
 2. **applepay.js** : Perfom the actual payment(Debit) via Payment Highway API.
 
 If you want to integrate Payment Highway in a mobile app using [iOS](https://github.com/PaymentHighway/paymenthighway-ios-framework) or [Android](https://github.com/PaymentHighway/paymenthighway-android-sdk) SDKs there are 2 lambdas implemented:
-1. **TransactionId**: Request a transaction Id
-2. **Tokenize**: Tokenize 
+1. **transaction**: Request a valid transaction Id from Payment Highway
+2. **Tokenize**: Get the tokenized card token for the given transaction id.
 
 ### Requirements
 
