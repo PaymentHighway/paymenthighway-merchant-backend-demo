@@ -18,7 +18,7 @@ const getPaymentApi = () => {
 };
 
 export const isResponse = (response) => {
-	return (response && response.result && response.result.code) ? true : false;
+	return response && response.result && response.result.code ;
 }
 
 export const isSuccess = (response) => {

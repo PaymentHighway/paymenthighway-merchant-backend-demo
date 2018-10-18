@@ -6,11 +6,7 @@ export const transactionId = async (event, context, callback) => {
   return executeTransactinId();
 };
  
-const transactionIdResponse = (id) => {
-    return {
-        id: id
-    }
-}
+const transactionIdResponse = (id) => ({id})
 
 const executeTransactinId = () => new Promise((resolve, reject) => {
 

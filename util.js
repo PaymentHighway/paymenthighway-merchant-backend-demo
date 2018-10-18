@@ -13,9 +13,7 @@ export const buildResponse = (phResponse, ...objs) => {
     if (isResponse(phResponse)) {
       var result = { result: phResponse.result };   
       if (isSuccess(phResponse)) {
-        for (var obj of objs) {
-          result = Object.assign(result, obj)
-        }
+        Object.assign(result, ...objs);
       }
       return result;
     }
@@ -23,7 +21,7 @@ export const buildResponse = (phResponse, ...objs) => {
     return {
       result: {
         code: 999,
-        message: "Unknown error!!!"
+        message: "Message is not a PH response!"
       }
     }
 }

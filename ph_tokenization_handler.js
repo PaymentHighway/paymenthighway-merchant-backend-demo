@@ -5,13 +5,8 @@ import { buildResponse } from './util';
 export const tokenization = async (event, context, callback) => {
     return executeTokenization(event);
 };
-        
-const transactionTokenResponse = (token) => {
-    if (!token) return {}
-    return {
-        token: token
-    }
-}
+      
+const transactionTokenResponse = (token) => token ? { token } : {};
 
 const transactionCardResponse = (card) => {
     if (!card) return {}
