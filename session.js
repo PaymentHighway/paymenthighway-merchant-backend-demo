@@ -9,7 +9,7 @@ export const create = async (event, context, callback) => {
     const endpointURL = serverlessRequest.url || '';
 
     if (!isValidApplePayGateway(endpointURL)) {
-        callBack(null, responseJson(400, {message: 'Invalid Apple Pay Fatway!'}))
+        callBack(null, responseJson(400, {message: 'Invalid Apple Pay gateway!'}))
         return
     }
     return createSession(endpointURL, serverlessRequest.body);
