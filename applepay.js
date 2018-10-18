@@ -1,6 +1,6 @@
-import { PaymentAPI } from 'paymenthighway';
 import responseJson from './responseJson';
-import parseJson from './util';
+import { parseJson } from './util';
+import getPaymentApi from './phapi';
 
 export const debit = async (event, context, callback) => {
   const serverlessRequest = parseJson(event.body, {});
@@ -9,19 +9,7 @@ export const debit = async (event, context, callback) => {
   
 const executeDebit = (serverlessRequest) => new Promise((resolve, reject) => {
 
-  const phServiceUrl = process.env.PH_SERVICE_URL;
-  const phKey = process.env.PH_KEY;
-  const phSecret = process.env.PH_SECRET;
-  const phAccount = process.env.PH_ACCOUNT;
-  const phMerchant = process.env.PH_MERCHANT;
-
-  let paymentAPI = new PaymentAPI(
-    phServiceUrl,
-    phKey,
-    phSecret,
-    phAccount,
-    phMerchant
-  );
+  let paymentAPI = getPaymentApi();
 
   paymentAPI
     .initTransaction()
@@ -34,6 +22,6 @@ const executeDebit = (serverlessRequest) => new Promise((resolve, reject) => {
     })
     .catch((error) => {
       console.error(error);
-      reject(err);
+      reject(error);
     });
 });

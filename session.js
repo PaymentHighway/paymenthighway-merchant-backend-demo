@@ -1,6 +1,6 @@
 import { isValidApplePayGateway } from './validateApplePayGateway';
 import responseJson from './responseJson';
-import parseJson from './util';
+import { parseJson } from './util';
 import request from 'request';
 
 export const create = async (event, context, callback) => {
@@ -9,7 +9,7 @@ export const create = async (event, context, callback) => {
     const endpointURL = serverlessRequest.url || '';
 
     if (!isValidApplePayGateway(endpointURL)) {
-        callBack(null, responseJson(400, {message: 'Hello Sad World!'}))
+        callBack(null, responseJson(400, {message: 'Invalid Apple Pay Fatway!'}))
         return
     }
     return createSession(endpointURL, serverlessRequest.body);
@@ -34,13 +34,12 @@ const createSession = (endpointURL, body) => new Promise((resolve, reject) => {
     let serverlessResponse = {};
 
     if (error) {
-      console.error('session create failed:', error);
-      serverlessResponse = responseJson(500, {"message": "Hello Sad World!" });
+      console.error('Create session failed:', error);
+      serverlessResponse = responseJson(500, {"message": "Create session failed!" });
     } else {
-      console.error('session create succeeded:', body);
 
       if (body.statusCode === '400') {
-        console.info('statusCode === 400');
+        console.err('Error creating session: ' + body.statusMessage );
         serverlessResponse = responseJson(400, {"message": body.statusMessage });
       } else {
         serverlessResponse = responseJson(200, body);
